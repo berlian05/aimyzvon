@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload, Link as LinkIcon, FileText, Mic, Settings } from 'lucide-react'
+import { Upload, Link as LinkIcon, FileText, Mic, Settings, Search, Globe, Linkedin, InfoIcon } from 'lucide-react'
 
 const CALL_TYPES = [
   { id: 'cold', name: 'Холодные звонки', description: 'Первичный контакт с потенциальными клиентами' },
@@ -25,6 +25,7 @@ export function CampaignSetup() {
     { id: 'database', name: 'База данных', icon: Upload },
     { id: 'script', name: 'Скрипт', icon: FileText },
     { id: 'company', name: 'О компании', icon: LinkIcon },
+    { id: 'research', name: 'Изучить компанию', icon: Search },
     { id: 'settings', name: 'Настройки', icon: Settings }
   ]
 
@@ -140,6 +141,106 @@ export function CampaignSetup() {
               className="w-full h-32 px-4 py-3 bg-[#2A2B33] rounded-xl border border-gray-700 focus:border-indigo-500 outline-none text-white resize-none"
               placeholder="Опишите ключевые преимущества вашей компании..."
             />
+          </div>
+        </div>
+      )}
+
+      {/* Изучить компанию */}
+      {activeTab === 'research' && (
+        <div className="space-y-6">
+          <div>
+            <label className="block text-gray-400 mb-2">Ссылки на компанию</label>
+            <div className="space-y-4">
+              <div>
+                <div className="flex items-center mb-2">
+                  <Globe className="w-5 h-5 text-gray-400 mr-2" />
+                  <span className="text-gray-400">Веб-сайт</span>
+                </div>
+                <input
+                  type="url"
+                  className="w-full px-4 py-3 bg-[#2A2B33] rounded-xl border border-gray-700 focus:border-indigo-500 outline-none text-white"
+                  placeholder="https://company-website.com"
+                />
+              </div>
+              
+              <div>
+                <div className="flex items-center mb-2">
+                  <Linkedin className="w-5 h-5 text-gray-400 mr-2" />
+                  <span className="text-gray-400">LinkedIn</span>
+                </div>
+                <input
+                  type="url"
+                  className="w-full px-4 py-3 bg-[#2A2B33] rounded-xl border border-gray-700 focus:border-indigo-500 outline-none text-white"
+                  placeholder="https://linkedin.com/company/..."
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center mb-2">
+                  <FileText className="w-5 h-5 text-gray-400 mr-2" />
+                  <span className="text-gray-400">Презентация компании</span>
+                </div>
+                <div className="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center hover:border-indigo-500 transition-colors">
+                  <input
+                    type="file"
+                    accept=".pdf,.ppt,.pptx"
+                    className="hidden"
+                    id="presentation-upload"
+                  />
+                  <label
+                    htmlFor="presentation-upload"
+                    className="cursor-pointer text-indigo-400 hover:text-indigo-300 flex flex-col items-center"
+                  >
+                    <Upload className="w-6 h-6 mb-2" />
+                    <span>Загрузить презентацию</span>
+                    <span className="text-sm text-gray-500 mt-1">PDF, PPT или PPTX</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-gray-400 mb-2">Ключевые слова и фразы</label>
+            <textarea
+              className="w-full h-32 px-4 py-3 bg-[#2A2B33] rounded-xl border border-gray-700 focus:border-indigo-500 outline-none text-white resize-none"
+              placeholder="Введите ключевые слова и фразы, характерные для вашей отрасли..."
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-400 mb-2">Целевая аудитория</label>
+            <div className="bg-[#2A2B33] p-4 rounded-xl">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-400 mb-2">Размер компании</label>
+                  <select className="w-full px-4 py-2 bg-[#1E1F25] rounded-lg border border-gray-700 text-white">
+                    <option>Малый бизнес</option>
+                    <option>Средний бизнес</option>
+                    <option>Крупный бизнес</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-gray-400 mb-2">Отрасль</label>
+                  <select className="w-full px-4 py-2 bg-[#1E1F25] rounded-lg border border-gray-700 text-white">
+                    <option>IT и технологии</option>
+                    <option>Производство</option>
+                    <option>Розничная торговля</option>
+                    <option>Услуги</option>
+                    <option>Другое</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-500/10 p-4 rounded-xl">
+            <div className="flex items-start">
+              <InfoIcon className="w-5 h-5 text-blue-400 mr-3 mt-1" />
+              <p className="text-sm text-blue-400">
+                AI-ассистент проанализирует предоставленную информацию о компании и автоматически адаптирует скрипт продаж под специфику бизнеса клиента, учитывая отраслевые особенности и потребности.
+              </p>
+            </div>
           </div>
         </div>
       )}
